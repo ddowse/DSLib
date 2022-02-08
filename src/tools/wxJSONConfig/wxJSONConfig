@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "--I/usr/local/wxJSON/include --L/usr/local/wxJSON/lib -l wxcode_gtk2u_wxjson-2.8"

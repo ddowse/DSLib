@@ -1,0 +1,45 @@
+CPP       = c++
+LINK      = c++
+
+include Makefile.Objects
+
+INCS      = -I"/usr/local/include" \
+			-I"/usr/local/include/mysql"
+
+LIBS      = -L/usr/local/lib/mysql \
+			-L/usr/local/pgsql/lib \
+			-L/usr/local/lib \
+			-lpq \
+			-lmysqlclient \
+			-lsqlite3 \
+			-lfcgi \
+			-lmcrypt \
+			-lssl -lcrypto \
+			`wx-config --libs`
+
+CXXFLAGS  = $(INCS) `wx-config --cppflags` # -O3
+
+TARGET    = libds2.so
+INSTDIR   = "/usr/local/DSLib"
+
+all: $(TARGET)
+
+clean:
+	rm -f $(OBJ) $(TARGET)
+
+install: all
+	rm -Rf $(INSTDIR)
+	mkdir -p $(INSTDIR)
+	mkdir $(INSTDIR)/include
+	mkdir $(INSTDIR)/lib
+	cp -f $(TARGET) $(INSTDIR)/lib/
+	cp -f *.h $(INSTDIR)/include/
+
+deinstall:
+	rm -Rf $(INSTDIR)
+
+$(TARGET): $(OBJ)
+	$(LINK) $(OBJ) -fPIC -Wall -g -shared -Wall -o $(TARGET) $(LIBS)
+
+.cpp.o:
+	$(CPP) $(CXXFLAGS) -fPIC -g -c $*.cpp -o $*.o

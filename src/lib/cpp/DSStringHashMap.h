@@ -1,0 +1,6 @@
+#ifndef DS_STRING_HASH_MAP_H
+#define DS_STRING_HASH_MAP_H
+
+WX_DECLARE_STRING_HASH_MAP(wxString, DSStringHashMap);
+
+#endif /* DS_STRING_HASH_MAP_H */

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "-lds2 `wx-config --libs --cppflags`" -L/usr/local/DSLib/lib -I/usr/local/DSLib/include -L/usr/local/lib -I/usr/local/include

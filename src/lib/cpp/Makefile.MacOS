@@ -1,0 +1,45 @@
+CPP       = c++
+LINK      = c++
+
+include Makefile.Objects.WithoutMySQL
+
+INCS      = -I/usr/local/include \
+			-I/usr/local/pgsql/include \
+			-I/usr/local/Cellar/openssl@1.1/1.1.1l_1/include
+
+LIBS      = -L/usr/local/lib \
+			-L/usr/local/pgsql/lib \
+			-L/usr/local/Cellar/openssl@1.1/1.1.1l_1/lib/ \
+			-lpq \
+			-lsqlite3 \
+			-lfcgi \
+			-lmcrypt \
+			-lssl -lcrypto \
+			`/usr/local/wxMac-3.1.6/bin/wx-config --libs`
+
+CXXFLAGS  = $(INCS) `/usr/local/wxMac-3.1.6/bin/wx-config --cppflags` # -O3
+
+TARGET    = libds2.so
+INSTDIR   = "/usr/local/DSLib"
+
+all: $(TARGET)
+
+clean:
+	rm -f $(OBJ) $(TARGET)
+
+install: all
+	rm -Rf $(INSTDIR)
+	mkdir -p $(INSTDIR)
+	mkdir $(INSTDIR)/include
+	mkdir $(INSTDIR)/lib
+	cp -f $(TARGET) $(INSTDIR)/lib/
+	cp -f *.h $(INSTDIR)/include/
+
+deinstall:
+	rm -Rf $(INSTDIR)
+
+$(TARGET): $(OBJ)
+	$(LINK) $(OBJ) -fPIC -Wall -g -shared -Wall,soname,libds.so -o $(TARGET) $(LIBS)
+
+.cpp.o:
+	$(CPP) $(CXXFLAGS) -fPIC -g -c $*.cpp -o $*.o
