@@ -1,25 +1,30 @@
 CPP       = c++
 LINK      = c++
 
-include Makefile.Objects.WithoutMySQL
+include Makefile.Objects
 
 INCS      = -I/usr/local/include \
 			-I/usr/local/pgsql/include \
-			-I/usr/local/Cellar/openssl@1.1/1.1.1l_1/include
+			-I/usr/local/opt/mysql-client/include/mysql \
+			-I/usr/local/Cellar/openssl@3/3.0.5/include \
+			-I/usr/local/wxJSON/include
 
 LIBS      = -L/usr/local/lib \
 			-L/usr/local/pgsql/lib \
-			-L/usr/local/Cellar/openssl@1.1/1.1.1l_1/lib/ \
+			-L/usr/local/Cellar/openssl@3/3.0.5/lib \
+			-L/usr/local/opt/mysql-client/lib \
+			-L/usr/local/wxJSON/lib \
 			-lpq \
 			-lsqlite3 \
 			-lfcgi \
 			-lmcrypt \
+			-lmysqlclient \
 			-lssl -lcrypto \
-			`/usr/local/wxMac-3.1.6/bin/wx-config --libs`
+			`/usr/local/Cellar/wxwidgets/3.2.0_1/bin/wx-config --libs`
 
-CXXFLAGS  = $(INCS) `/usr/local/wxMac-3.1.6/bin/wx-config --cppflags` # -O3
+CXXFLAGS  = $(INCS) `/usr/local/Cellar/wxwidgets/3.2.0_1/bin/wx-config --cppflags` -std=c++11 # -O3
 
-TARGET    = libds2.so
+TARGET    = libds3.so
 INSTDIR   = "/usr/local/DSLib"
 
 all: $(TARGET)

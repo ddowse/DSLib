@@ -18,18 +18,12 @@ DynSoft::DSClassInfo DynSoft::DSTesting::GetClassInfo() {
 	);
 }
 
-bool DynSoft::DSTesting::Save(
+unsigned int DynSoft::DSTesting::Save(
+	const unsigned int format,
 	const wxString &filename,
-	const unsigned int format
+	bool *saved
 ) {
-	bool ok = false;
 	message.Clear();
-
-	DSFile file(filename, _N("w"));
-	if(!file.IsOpened()) {
-		PrintLine(_N("Could not open or save to file: ") + filename + _N(". Proccess aborted."));
-		return ok;
-	}
 
 	unsigned int successCount = 0;
 	unsigned int errorCount   = 0;
@@ -80,10 +74,29 @@ bool DynSoft::DSTesting::Save(
 
 	SetHeaderFooter(format);
 
-	ok = file.Write(message);
-	file.Close();
+	if(format != NONE) {
+		bool tmpSaved = true;
+		DSFile file(filename, _N("w"));
+		if(!file.IsOpened()) {
+			PrintLine(_N("Could not open or save to file: ") + filename + _N(". Proccess aborted."));
+			tmpSaved = false;
+		} else {
+			if(!file.Write(message)) {
+				PrintLine(_N("Could not write to file: ") + filename + _N(". Proccess aborted."));
+				tmpSaved = false;
+			} else {
+				if(!file.Close()) {
+					PrintLine(_N("Could not clsoe file: ") + filename + _N(". Proccess aborted."));
+					tmpSaved = false;
+				}
+			}
+		}
 
-	return ok;
+		if(*saved)
+			*saved = tmpSaved;
+	}
+
+	return errorCount;
 }
 
 void DynSoft::DSTesting::SetHeaderFooter(const unsigned int format) {

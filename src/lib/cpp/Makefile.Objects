@@ -80,7 +80,6 @@ OBJ       = DSLib.o \
 			DSDirectoriesType.o \
 			DSFilesystem.o \
 			DSOpenSSLSocket.o \
-			DSJSONType.o \
 			DSKeyValueType.o \
 			DSKeyValueTypes.o \
 			DSBase64Library.o

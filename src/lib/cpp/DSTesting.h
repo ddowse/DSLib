@@ -18,13 +18,15 @@ namespace DynSoft {
 			static const unsigned int TEXT = 0;
 			static const unsigned int CSV  = 1;
 			static const unsigned int HTML = 2;
+			static const unsigned int NONE = 3; // Means no saving of results
 
 			DSTesting();
 			~DSTesting();
 
-			bool Save(
-				const wxString &filename,
-				const unsigned int format = TEXT
+			unsigned int Save(
+				const unsigned int format = NONE,
+				const wxString &filename = wxEmptyString,
+				bool *saved = nullptr
 			);
 
 			DSClassInfo GetClassInfo();
