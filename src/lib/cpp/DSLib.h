@@ -5,7 +5,7 @@
 #include "DSClassInfo.h"
 #include "DSStringHashMap.h"
 
-#define DS_LIB_VERSION			_N("0.21.7")
+#define DS_LIB_VERSION			_N("0.21.8")
 #define DS_LIB_NAME				_N("DSLib")
 #define DS_LIB_AUTHOR			_N("Thorsten Geppert (thorsten@ext2fs.de)")
 #define DS_LIB_DESCRIBER_OR		' '

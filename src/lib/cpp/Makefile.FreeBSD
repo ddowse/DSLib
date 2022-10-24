@@ -1,7 +1,7 @@
 CPP       = c++
 LINK      = c++
 
-include Makefile.Objects.WithoutMySQL
+include Makefile.Objects
 
 INCS      = -I"/usr/local/include" \
 			-I"/usr/local/include/mysql" \
@@ -16,13 +16,12 @@ LIBS      = -L/usr/local/lib/mysql \
 			-lfcgi \
 			-lmcrypt \
 			-lssl -lcrypto \
-			-lwxcode_gtk2u_wxjson-2.8 \
-			`wxgtk2u-2.8-config --libs`
+			`wxgtk3u-3.1-config --libs`
 
-CXXFLAGS  = $(INCS) `wxgtk2u-2.8-config --cppflags` # -O3
+CXXFLAGS  = $(INCS) `wxgtk3u-3.1-config --cppflags` -std=c++11 # -O3
 
-TARGET    = libds2.so
-INSTDIR   = "/usr/local/DSLib"
+TARGET    = libds3.so
+INSTDIR   = "/usr/local/DSLib3"
 
 all: $(TARGET)
 

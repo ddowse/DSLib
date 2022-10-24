@@ -128,11 +128,11 @@ void DynSoft::DSLib::Print(const char *message) {
 }
 
 void DynSoft::DSLib::PrintLine(wxString message) {
-	std::cout << (const char *) message.mb_str(wxConvUTF8) << std::endl;
+	std::cout << static_cast<const char *>(message.mb_str(wxConvUTF8)) << std::endl;
 }
 
 void DynSoft::DSLib::PrintLineError(wxString message) {
-	std::cerr << (const char *) message.mb_str(wxConvUTF8) << std::endl;
+	std::cerr << static_cast<const char *>(message.mb_str(wxConvUTF8)) << std::endl;
 }
 
 void DynSoft::DSLib::PrintLine(const char *message) {

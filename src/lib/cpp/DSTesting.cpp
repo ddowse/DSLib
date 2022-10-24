@@ -7,7 +7,7 @@ DynSoft::DSTesting::DSTesting(
 }
 
 DynSoft::DSTesting::~DSTesting() {
-	Clear(true);
+	//Clear(true);
 }
 
 DynSoft::DSClassInfo DynSoft::DSTesting::GetClassInfo() {
@@ -92,7 +92,7 @@ unsigned int DynSoft::DSTesting::Save(
 			}
 		}
 
-		if(*saved)
+		if(saved)
 			*saved = tmpSaved;
 	}
 
