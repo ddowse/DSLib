@@ -1,16 +1,28 @@
 DSLib
 =====
 
-DSLib is a Library based on the wxWidgets framework for developing easily database used applications.
+DSLib is a Library based on the wxWidgets framework for developing easily database used applications.   
 
 
-# Compile on FreeBSD
 
-```pkg install gmake fcgi-devkit mcrypt
-cd src/lib/cpp/
-gmake -f Makefile.FreeBSD```
+## Compile and install on FreeBSD
 
-# Install on FreeBSD
+# Install dependencies
 
-```gmake -f Makefile.FreeBSD install```
+```sh
+pkg install gmake fcgi-devkit mcrypt  
+```
+
+# Compile
+
+```sh 
+cd src/lib/cpp/   
+gmake -f Makefile.FreeBSD
+```
+
+# Install
+
+```sh
+gmake -f Makefile.FreeBSD install
+```
 
