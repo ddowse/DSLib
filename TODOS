@@ -2,4 +2,4 @@ Todos
 =====
 
 - Add error handling to database stuff
-
+- Update TLSv1_2_method as it is deprecated
